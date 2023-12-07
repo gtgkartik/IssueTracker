@@ -1,17 +1,21 @@
 import type { Metadata } from 'next'
+import '@radix-ui/themes/styles.css';
+import './theme-config.css';
 import { Inter } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 
 import '@radix-ui/themes/styles.css';
 import { Theme, ThemePanel } from '@radix-ui/themes';
-import '@radix-ui/themes/styles.css';
-import './theme-config.css'
 
-const inter = Inter(
-  { subsets: ['latin'],
-  variable: '--font-inter', 
-})
+
+
+const inter = Inter({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-inter',
+});
+
 
 export const metadata: Metadata = {
   title: 'Issues Apps',
