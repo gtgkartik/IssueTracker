@@ -1,6 +1,6 @@
 import React from "react";
-import { Button, IconButton, Table } from "@radix-ui/themes";
-import Link from "next/link";
+import { Button, IconButton, Table, Link } from "@radix-ui/themes";
+import LinkNext from "next/link";
 import prisma from "@/prisma/client";
 import Image from "next/image";
 import { DotFilledIcon } from "@radix-ui/react-icons";
@@ -16,7 +16,7 @@ const IssuesPage = async () => {
     <div>
         <div className="mb-10">
         <Button >
-        <Link href="/issues/new ">Create New Issue</Link>
+        <LinkNext href="/issues/new ">Create New Issue</LinkNext>
       </Button>
         </div>
 
@@ -35,9 +35,9 @@ const IssuesPage = async () => {
               <>
                 <Table.Row>
                   <Table.Cell className="max-w-[300px]">
-                    <Link href={`/issues/${issue.id}`}>
-                    {issue.title}
-                    </Link>
+                    <LinkNext href={`/issues/${issue.id}`}  passHref legacyBehavior>
+                      <Link>{issue.title}</Link>
+                    </LinkNext>
                   </Table.Cell>
                   <Table.Cell >
                     <IssueStatusBadge status={issue.status}/>
