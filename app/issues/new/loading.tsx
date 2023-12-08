@@ -8,7 +8,7 @@ const Loading = () => {
   return (
     <div className="max-w-xl">
         <Skeleton/>
-        <Skeleton count={10} /> 
+        <Skeleton height={50}/> 
     </div>
   );
 };

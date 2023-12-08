@@ -13,6 +13,7 @@ const Issue = async ({ params }: { params: { id: string } }) => {
   if (!issue) {
     notFound();
   }
+
   return (
     <div>
       <Heading as="h2">{issue.title}</Heading>

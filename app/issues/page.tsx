@@ -5,12 +5,10 @@ import prisma from "@/prisma/client";
 import Image from "next/image";
 import { DotFilledIcon } from "@radix-ui/react-icons";
 import IssueStatusBadge from "@/components/IssueStatusBadge";
-import delay from 'delay';
 
 
 const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();
-  await delay(1000);
   return (
     <>
     <div>
