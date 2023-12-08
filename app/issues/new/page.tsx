@@ -19,12 +19,14 @@ import { useRouter } from "next/navigation";
 import { createIssueSchema } from "@/app/ValidationSchemas";
 import { zodResolver } from "@hookform/resolvers/zod"; // this resolver will be passed to the web hook form
 import { z } from "zod";
+import Spinner from "@/components/Spinner";
 
 // we are generating this interface from zod, in future we can just manipulate xod object instead of maipulating the interface and zod
 type IssueForm = z.infer<typeof createIssueSchema>;
 
 const NewIssue = () => {
   const [error, setError] = useState(false);
+  const [isLoading, setisLoading] = useState(false)
 
   const router = useRouter();
   const {
@@ -39,6 +41,7 @@ const NewIssue = () => {
   return (
     <>
       <div className="max-w-xl">
+        {/* This is for handling server side error  */}
         {error && (
           <>
             <Callout.Root color="red" className="mb-5">
@@ -50,9 +53,11 @@ const NewIssue = () => {
           className="max-w-xl space-y-3"
           onSubmit={handleSubmit(async (data) => {
             try {
+              setisLoading(true)
               await axios.post("/api/issues", data);
               router.push("/issues");
             } catch (error) {
+              setisLoading(false)
               console.log(error);
               setError(true);
             }
@@ -80,7 +85,7 @@ const NewIssue = () => {
             </Text>
           )}
 
-          <Button>Submit New Issue</Button>
+          <Button disabled={isLoading}>Submit New Issue {isLoading && <Spinner/>}</Button>
         </form>
       </div>
     </>
