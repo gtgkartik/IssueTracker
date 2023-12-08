@@ -6,7 +6,6 @@ import { TextArea, Callout } from "@radix-ui/themes";
 //react imports
 import React, { useState } from "react";
 // simple mardown related imports
-import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 
 //react hook form related imports
@@ -21,6 +20,13 @@ import { zodResolver } from "@hookform/resolvers/zod"; // this resolver will be 
 import { z } from "zod";
 import Spinner from "@/components/Spinner";
 
+
+
+//this will tell the next js not to render the Simple MDE editor on the server at any cost not even a bit
+import dynamic from "next/dynamic";
+const SimpleMDE = dynamic(
+  () => import('react-simplemde-editor'), 
+  {ssr:false})
 
 // we are generating this interface from zod, in future we can just manipulate xod object instead of maipulating the interface and zod
 type IssueForm = z.infer<typeof createIssueSchema>;

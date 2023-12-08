@@ -7,8 +7,8 @@ const Loading = () => {
     
   return (
     <div className="max-w-xl">
-        <Skeleton/>
-        <Skeleton height={50}/> 
+        <Skeleton height={50}/>
+        <Skeleton height={500}/> 
     </div>
   );
 };
