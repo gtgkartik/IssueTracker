@@ -4,6 +4,7 @@ import Link from "next/link";
 import prisma from "@/prisma/client";
 import Image from "next/image";
 import { DotFilledIcon } from "@radix-ui/react-icons";
+import IssueStatusBadge from "@/components/IssueStatusBadge";
 
 const IssuesPage = async () => {
   const issues = await prisma.issue.findMany();
@@ -34,12 +35,7 @@ const IssuesPage = async () => {
                     {issue.title}
                   </Table.Cell>
                   <Table.Cell >
-                    <div className="flex space-x-3">
-                      <IconButton size="1" variant="soft" color="red" radius="full" >
-                        <DotFilledIcon width="25" height="25" />
-                      </IconButton>
-                      <div>{issue.status}</div>
-                    </div>
+                    <IssueStatusBadge status={issue.status}/>
                     </Table.Cell>
                   <Table.Cell className="hidden md:table-cell">{issue.createdAt.toDateString()}</Table.Cell>
                 </Table.Row>
