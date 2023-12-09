@@ -1,8 +1,11 @@
 import IssueStatusBadge from "@/components/IssueStatusBadge";
 import prisma from "@/prisma/client";
-import { Card, Flex, Heading, Text } from "@radix-ui/themes";
+import { Pencil2Icon } from "@radix-ui/react-icons";
+import { Box, Button, Card, Flex, Grid, Heading, Text } from "@radix-ui/themes";
 import { notFound } from "next/navigation";
 import Markdown from 'react-markdown';
+import NextLink from "next/link";
+import { Link } from "@radix-ui/themes";
 
 const Issue = async ({ params }: { params: { id: string } }) => {
   const issue = await prisma.issue.findUnique({
@@ -13,7 +16,8 @@ const Issue = async ({ params }: { params: { id: string } }) => {
   }
 
   return (
-    <div>
+    <Grid columns={{initial:'1', md: '2'}} gap="5">
+      <Box>
       <Heading as="h2">{issue.title}</Heading>
       <Flex gap="3"my="2">
         <IssueStatusBadge status={issue.status} />
@@ -22,7 +26,17 @@ const Issue = async ({ params }: { params: { id: string } }) => {
       <Card className="prose" mt="4">
     <Markdown>{issue.description}</Markdown>
       </Card>
-    </div>
+      </Box>
+      <Box>
+        <Button className="items-center flex">
+          <Pencil2Icon width="17" height="17" />
+          <NextLink href={`${issue.id}/edit`}>
+         Edit Issue
+          </NextLink>
+          </Button>
+      </Box>
+
+    </Grid>
   );
 };
 

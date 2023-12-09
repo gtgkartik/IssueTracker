@@ -14,8 +14,9 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 // importing the global validation schema we have created, this is a common validation schema for both client and server
-import {prisma,z, Spinner, createIssueSchema} from '@/components/index'
+import {prisma, Spinner, createIssueSchema} from '@/components/index'
 import { zodResolver } from "@hookform/resolvers/zod";
+import {z} from 'zod'
 
 
 //this will tell the next js not to render the Simple MDE editor on the server at any cost not even a bit
