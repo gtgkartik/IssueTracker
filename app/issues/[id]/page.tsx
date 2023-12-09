@@ -1,10 +1,8 @@
-import React from "react";
-import prisma from "@/prisma/client";
-import { notFound } from "next/navigation";
-import { Card, Flex, Heading } from "@radix-ui/themes";
 import IssueStatusBadge from "@/components/IssueStatusBadge";
-import { Text } from "@radix-ui/themes";
-import Markdown from 'react-markdown'
+import prisma from "@/prisma/client";
+import { Card, Flex, Heading, Text } from "@radix-ui/themes";
+import { notFound } from "next/navigation";
+import Markdown from 'react-markdown';
 
 const Issue = async ({ params }: { params: { id: string } }) => {
   const issue = await prisma.issue.findUnique({

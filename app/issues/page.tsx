@@ -1,10 +1,7 @@
-import React from "react";
-import { Button, IconButton, Table, Link } from "@radix-ui/themes";
-import LinkNext from "next/link";
-import prisma from "@/prisma/client";
-import Image from "next/image";
-import { DotFilledIcon } from "@radix-ui/react-icons";
 import IssueStatusBadge from "@/components/IssueStatusBadge";
+import prisma from "@/prisma/client";
+import { Button, Link, Table } from "@radix-ui/themes";
+import LinkNext from "next/link";
 
 
 const IssuesPage = async () => {
@@ -28,10 +25,9 @@ const IssuesPage = async () => {
           </Table.Row>
         </Table.Header>
         <Table.Body>
-          {issues.map((issue) => {
-            return (
+          {issues.map((issue) => 
               <>
-                <Table.Row>
+                <Table.Row key={issue.id}>
                   <Table.Cell className="max-w-[300px]">
                     <LinkNext href={`/issues/${issue.id}`}  passHref legacyBehavior>
                       <Link>{issue.title}</Link>
@@ -43,8 +39,7 @@ const IssuesPage = async () => {
                   <Table.Cell className="hidden md:table-cell">{issue.createdAt.toDateString()}</Table.Cell>
                 </Table.Row>
               </>  
-            );
-          })}
+          )}
         </Table.Body>
       </Table.Root>
     </div>

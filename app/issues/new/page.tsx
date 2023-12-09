@@ -1,25 +1,21 @@
 "use client";
 // redix ui related imports
-import { Button, Text, TextField } from "@radix-ui/themes";
-import { TextArea, Callout } from "@radix-ui/themes";
+import { Button, Callout, Text, TextField } from "@radix-ui/themes";
 
 //react imports
-import React, { useState } from "react";
+import { useState } from "react";
 // simple mardown related imports
 import "easymde/dist/easymde.min.css";
 
 //react hook form related imports
-import { useForm, Controller } from "react-hook-form";
+import { Controller, useForm } from "react-hook-form";
 
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
 // importing the global validation schema we have created, this is a common validation schema for both client and server
-import { createIssueSchema } from "@/app/ValidationSchemas";
-import { zodResolver } from "@hookform/resolvers/zod"; // this resolver will be passed to the web hook form
-import { z } from "zod";
-import Spinner from "@/components/Spinner";
-
+import {prisma,z, Spinner, createIssueSchema} from '@/components/index'
+import { zodResolver } from "@hookform/resolvers/zod";
 
 
 //this will tell the next js not to render the Simple MDE editor on the server at any cost not even a bit
