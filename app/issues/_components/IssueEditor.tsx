@@ -47,6 +47,7 @@ const IssueEditor = ({ issue }: { issue?: Issue }) => {
       setisLoading(true);
       await axios.patch(`/api/issues/${issue?.id}`, data);
       router.push("/issues");
+      router.refresh()
     } catch (error) {
       setisLoading(false);
       console.log(error);
@@ -88,7 +89,7 @@ const IssueEditor = ({ issue }: { issue?: Issue }) => {
             </Text>
           )}
           <Controller
-            defaultValue={issue?.description}
+           defaultValue={issue?.description ?? ''}
             name="description"
             control={control}
             render={({ field }) => (
