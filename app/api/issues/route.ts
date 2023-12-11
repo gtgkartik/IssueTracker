@@ -18,3 +18,24 @@ export async function POST(request:NextRequest){
     })
     return NextResponse.json(newIssue, {status:201})
 }
+
+export async function GET(request:NextRequest){
+    const result = await prisma.issue.findMany()
+
+    return NextResponse.json(result)
+}
+
+
+
+// export async function PUT(request:NextRequest){
+//     const body = await request.json();
+//     await prisma.issue.update({
+//         where : {
+//             id: body.id 
+//         },
+//         data: {
+//             title: body.title,
+//             description:body.description
+//         }
+//     })
+// }
